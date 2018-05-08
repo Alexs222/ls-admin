@@ -1,16 +1,18 @@
 <template lang="pug">
-  #app
-    .container
-      todo
+  //- #app
+  .admin
+    .header
+      app-header
+    .tabs
+    .content
 </template>
 
 
 <script>
-import todo from "./components/todo";
-
+import header from './components/header';
 export default {
   components: {
-    todo
+    appHeader: header
   }
 }
 </script>
