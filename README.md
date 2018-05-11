@@ -1,4 +1,4 @@
-# vue-todo-app
+# ls-admin
 
 > A Vue.js project
 
