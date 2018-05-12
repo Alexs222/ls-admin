@@ -7,18 +7,19 @@
                 v-if="checkSkillType(skillType) === skill.type"
                 :key="skill.id"
                 :skill="skill"
-
             )
+        skill-input
         br
         hr
 </template>
 
 <script>
 import skillsItem from "./skillsItem";
+import skillInput from "./skillInput";
 
 export default {
     components: {
-        skillsItem
+        skillsItem, skillInput
     },
     props: {
         skillType: String,
