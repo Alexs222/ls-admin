@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex';
 import skillsList from "./skillsList";
 
 export default {
@@ -18,16 +19,18 @@ export default {
     },
     data() {
         return {
-            skills: [],
+            // skills: [],
             skillsTypes: ['frontend', 'workflow', 'beckend']
         };
     },
+    computed: {
+        ...mapGetters(['skills'])
+    },
+    methods: {
+        ... mapActions(['fethSkills'])
+    },
     mounted() {
-        fetch('/src/data.json').then(data => {
-            return data.json()
-        }).then(responce => {
-            this.skills = responce;
-        })
+        this.fethSkills();
     }
 };
 </script>

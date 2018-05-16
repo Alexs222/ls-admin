@@ -4,11 +4,13 @@
         table
             skills-item(
                 v-for="skill in skills"
-                v-if="checkSkillType(skillType) === skill.type"
+                v-if="convertSkillStringToNum(skillType) === skill.type"
                 :key="skill.id"
                 :skill="skill"
             )
-        skill-input
+        skill-input(
+            :type="convertSkillStringToNum(skillType)"
+        )
         br
         hr
 </template>
@@ -26,7 +28,7 @@ export default {
         skills: Array
     },
     methods: {
-        checkSkillType(skillGroupName) {
+        convertSkillStringToNum(skillGroupName) {
             switch (skillGroupName) {
                 case 'frontend':
                     return 1;
