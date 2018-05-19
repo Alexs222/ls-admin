@@ -1,19 +1,32 @@
 <template lang="pug">
     .skill-input
-        input(type="text" v-model="skillName" @keydown.inter="addNewSkill")
+        input(
+            type="text"
+            v-model="skillName"
+            @keydown.inter="addNewSkill"
+            :class="{error : validation.hasError('skillName')}"
+        )
         button(type="button" @click="addNewSkill") Сохранить
+        .error-message {{validation.firstError('skillName')}}
 </template>
 
 <script>
 import {mapMutations} from 'vuex';
+import {Validator} from 'simple-vue-validator';
 
 export default {
+    mixins: [require('simple-vue-validator').mixin],
+    validators: {
+        skillName: value => {
+            return Validator.value(value).required('Название не может быт пустым');
+        }
+    },
     props: {
         type: Number
     },
     data() {
         return {
-            skillName: ""
+            skillName: "",
         }
     },
     methods: {
@@ -25,8 +38,13 @@ export default {
                 percents: 0,
                 type: this.type
             };
-
-            this.addSkill(newSkill);
+            this.$validate().then(success => {
+                if (!success) return;
+                this.addSkill(newSkill);
+                this.skillName = "";
+                this.validation.reset();
+            })
+            
 
             
             
@@ -35,6 +53,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .error {
+        border: 1px solid red;
+        outline: none;
+    }
 </style>

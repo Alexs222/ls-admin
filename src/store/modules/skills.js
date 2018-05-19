@@ -10,6 +10,9 @@ const skills = {
     mutations: {
         addSkill(state, skill) {
             state.data.push(skill)
+        },
+        removeSkill(state, skillId) {
+            state.data = state.data.filter(item => item.id !== skillId);
         }
     }, // что бы мы могли данные как то мутировать (например: добавить скилл, удалить скилл и т.д.)
     actions: {
