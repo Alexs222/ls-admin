@@ -6,7 +6,7 @@
     .tabs
       tabs
     .content
-      about
+      router-view
 </template>
 
 
